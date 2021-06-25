@@ -21,20 +21,18 @@ SUBMIT_TIMESHEET_BUTTON_ID = "submitTimesheetButton"
 MONDAY_TEXT_ID = "Assignment_0_AssignmentDetail_0_TimesheetRowGroup_2_DateHeading_0"
 FRIDAY_TEXT_ID = "Assignment_0_AssignmentDetail_0_TimesheetRowGroup_2_DateHeading_4"
 
-def fill_timesheet(webdriver, project_task, is_billable = True) -> None:	
+def fill_timesheet(webdriver, project_task, is_billable = True) -> None:
+	wait = WebDriverWait(webdriver, 10)
+
 	projectTaskInput = webdriver.find_element_by_id(PROJECT_TASK_ID)
 	projectTaskInput.clear()
 	projectTaskInput.send_keys(project_task)
- 
+	sleep(3)
 	billableNonbillableInput: WebElement = webdriver.find_element_by_id(BILLABLE_NONBILLABLE_ID)
-	billableNonbillableInput.clear()
-	sleep(1)
-	billableNonbillableInput.send_keys("Bill")
-	sleep(2)
 	billableNonbillableInput.click()
-	sleep(2)
 	
-	billableOption: WebElement = webdriver.find_element_by_id(BILLABLE_ID)
+ 	sleep(3)
+	billableOption: WebElement = wait.until(lambda x: x.find_element_by_id(BILLABLE_ID))
 	billableOption.click()
 	
 	for day_idx in range(0, 5):
@@ -43,11 +41,11 @@ def fill_timesheet(webdriver, project_task, is_billable = True) -> None:
 			if field_unbox_input.is_enabled:
 				field_unbox_input.click()
 	
-				WebDriverWait(webdriver, 10).until(
+				wait.until(
 					lambda x: x.find_element_by_class_name("modal-open")
 				)
 
-				WebDriverWait(webdriver, 10).until(
+				wait.until(
 					lambda x: not x.find_element_by_id("Master_Dialog_LoadingPanel").is_displayed()
 				)
 	
@@ -65,7 +63,7 @@ def fill_timesheet(webdriver, project_task, is_billable = True) -> None:
 				saveButton.click()
 	
 				webdriver.switch_to.default_content()
-				WebDriverWait(webdriver, 10).until(
+				wait.until(
 					lambda x: not x.find_element_by_class_name("ui-dialog").is_displayed()
 				)
 		except NoSuchElementException:
