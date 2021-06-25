@@ -8,4 +8,4 @@ BEELINE_USERNAME
 BEELINE_PASSWORD
 ```
 
-Voila! Once this is set up as a Github Action, it runs every Friday at noon.
+Voila! Once this is set up as a Github Action, it runs every Friday at 7PM UTC, or 12PM PST.
