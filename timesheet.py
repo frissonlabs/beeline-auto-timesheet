@@ -31,7 +31,7 @@ def fill_timesheet(webdriver, project_task, is_billable = True) -> None:
 	billableNonbillableInput: WebElement = webdriver.find_element_by_id(BILLABLE_NONBILLABLE_ID)
 	billableNonbillableInput.click()
 	
- 	sleep(3)
+	sleep(3)
 	billableOption: WebElement = wait.until(lambda x: x.find_element_by_id(BILLABLE_ID))
 	billableOption.click()
 	
@@ -54,7 +54,7 @@ def fill_timesheet(webdriver, project_task, is_billable = True) -> None:
 				startTimeInput: WebElement = webdriver.find_element_by_class_name(START_TIME_CLASS)
 				startTimeInput.clear()
 				startTimeInput.send_keys("9:00 AM")
-    
+	
 				endTimeInput: WebElement = webdriver.find_element_by_class_name(END_TIME_CLASS)
 				endTimeInput.clear()
 				endTimeInput.send_keys("5:00 PM")
