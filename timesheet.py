@@ -81,7 +81,9 @@ def submit_timesheet(webdriver) -> None:
 	
 	confirmationButton = next(x for x in dialogButtons if "Submit" in x.text)
 	confirmationButton.click()
- 
+
+	sleep(10)
+
 	WebDriverWait(webdriver, 10).until(
 		lambda x: not x.find_element_by_class_name("controllerOverlay").is_displayed()
 	)
