@@ -24,7 +24,7 @@ from timesheet import fill_timesheet, can_submit_timesheet, submit_timesheet, ge
 
 try:
 	print("Logging in...")
-	handle_login_page(driver, getenv("BEELINE_URL"), getenv("BEELINE_USERNAME"), getenv("BEELINE_PASSWORD"))
+	handle_login_page(driver, getenv("BEELINE_URL"), getenv("BEELINE_EMAIL"), getenv("BEELINE_PASSWORD"))
 	date_range = get_timesheet_date_range(driver)
 	print("Starting timesheet submission for " + date_range)
 	if can_submit_timesheet(driver):
